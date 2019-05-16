@@ -83,16 +83,16 @@ import javax.validation.constraints.Size;
             this.quantidade_disponivel = quantidade_disponivel;
         }
 
-        public boolean isCompra(){
-            return isCompra();
+        public boolean getCompra(){
+            return compra;
         }
 
         public void setCompra(boolean compra) {
             this.compra = compra;
         }
 
-        public boolean isNacional(){
-            return isNacional();
+        public boolean getNacional(){
+            return nacional;
         }
 
         public void setNacional(boolean nacional){
