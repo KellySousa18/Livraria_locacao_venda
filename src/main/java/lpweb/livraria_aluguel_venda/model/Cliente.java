@@ -22,7 +22,8 @@ public class Cliente {
     @NotNull
     @Enumerated (EnumType.STRING)
     private EnumType tipoCliente;
-@OneToOne(mappedBy = "cliente")
+
+    @OneToOne(mappedBy = "cliente")
     private Endereco endereco;
     private String telefone;
 
