@@ -15,7 +15,7 @@ public class Cliente {
     private Integer id;
     private String cpf;
     private String nome;
-    // @DateTimeFormat
+    @Temporal(value=TemporalType.DATE)
     private Date dt_nasc;
     private String email;
 

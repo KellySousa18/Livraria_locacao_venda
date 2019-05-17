@@ -1,6 +1,8 @@
 package lpweb.livraria_aluguel_venda.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table (name = "livro")
@@ -19,6 +21,10 @@ public class Livro {
     private Double preco_venda;
     private Double preco_aluguel;
     private Double preco_renovacao_aluguel;
+
+    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY,
+            mappedBy="aluguelID.livro")
+    private List<Aluguel> emprestimoItems = new ArrayList<Aluguel>();
 
     public Livro() {
     }
