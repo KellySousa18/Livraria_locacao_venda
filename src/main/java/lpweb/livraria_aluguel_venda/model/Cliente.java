@@ -7,21 +7,22 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-
+@Entity
 @Table(name = "cliente")
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
-    @Enumerated
-    @DateTimeFormat
-
     private Integer id;
     private String cpf;
     private String nome;
+    // @DateTimeFormat
     private Date dt_nasc;
     private String email;
+
+    @NotNull
+    @Enumerated (EnumType.STRING)
     private EnumType tipoCliente;
+@OneToOne(mappedBy = "cliente")
     private Endereco endereco;
     private String telefone;
 

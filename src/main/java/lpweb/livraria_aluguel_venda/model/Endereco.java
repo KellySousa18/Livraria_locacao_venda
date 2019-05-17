@@ -11,8 +11,6 @@ public class Endereco {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @JsonIgnore
-    @ManyToOne
     private Integer id;
     private String logradouro;
     private String numero;
@@ -21,7 +19,8 @@ public class Endereco {
     private String uf;
     private String cep;
 
-    @JoinColumn(name = "cliente_id", nullable = false )
+    @OneToOne
+    @JoinColumn(name = "id_cliente")
     private Cliente cliente;
 
 
