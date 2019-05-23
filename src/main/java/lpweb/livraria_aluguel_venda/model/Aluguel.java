@@ -4,6 +4,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.*;
+
 
 @Entity
 @Table (name = "aluguel")
@@ -69,5 +71,19 @@ public class Aluguel{
 
     public void setDtDevolucao(Date dtDevolucao) {
         this.dtDevolucao = dtDevolucao;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Aluguel)) return false;
+        Aluguel aluguel = (Aluguel) o;
+        return Objects.equals(getId(), aluguel.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
     }
 }

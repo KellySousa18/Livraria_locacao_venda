@@ -4,6 +4,8 @@ import org.springframework.boot.convert.DataSizeUnit;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -13,10 +15,19 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @NotEmpty
+    @cpf
+    @Column(unique = true)
     private String cpf;
+
+    @NotEmpty
     private String nome;
+
     @Temporal(value=TemporalType.DATE)
     private Date dt_nasc;
+
+    @Email
     private String email;
 
     @NotNull
@@ -77,4 +88,18 @@ public class Cliente {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Cliente)) return false;
+        Cliente cliente = (Cliente) o;
+        return Objects.equals(getId(), cliente.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
+    }
+
 }
