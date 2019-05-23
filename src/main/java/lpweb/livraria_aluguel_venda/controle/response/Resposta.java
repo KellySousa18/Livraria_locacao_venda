@@ -4,28 +4,29 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Resposta {
+public class Resposta<T> {
 
     private T dados;
     private List<Erro> erros = new ArrayList<>();
 
-    private Resposta() { }
+    private Resposta() {
+    }
 
     public static Resposta comDadosDe(Object dados) {
         Resposta resposta = new Resposta<>();
-        resposta.setDados(dados );
+        resposta.setDados(dados);
         return resposta;
     }
 
     public static Resposta com(List<Erro> erros) {
         Resposta resposta = new Resposta<>();
-        resposta.setErros(erros );
+        resposta.setErros(erros);
         return resposta;
     }
 
     public static Resposta com(Erro erro) {
         Resposta resposta = new Resposta<>();
-        resposta.setErros(Arrays.asList(erro) );
+        resposta.setErros(Arrays.asList(erro));
         return resposta;
     }
 

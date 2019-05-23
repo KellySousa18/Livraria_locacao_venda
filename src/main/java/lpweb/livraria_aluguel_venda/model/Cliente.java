@@ -1,13 +1,13 @@
 package lpweb.livraria_aluguel_venda.model;
 
-import org.springframework.boot.convert.DataSizeUnit;
-import org.springframework.format.annotation.DateTimeFormat;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "cliente")
@@ -17,7 +17,7 @@ public class Cliente {
     private Integer id;
 
     @NotEmpty
-    @cpf
+    @CPF
     @Column(unique = true)
     private String cpf;
 
