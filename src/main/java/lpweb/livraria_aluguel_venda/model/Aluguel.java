@@ -9,8 +9,19 @@ import java.util.Date;
 @Table (name = "aluguel")
 public class Aluguel{
 
-    @EmbeddedId
-    private AluguelID aluguelID;
+    @ManyToOne(cascade={CascadeType.REFRESH, CascadeType.PERSIST,
+       CascadeType.MERGE}, fetch=FetchType.EAGER)
+    @JoinColumn(name="idCliente")
+    private Cliente cliente;
+
+    @ManyToOne(cascade={CascadeType.REFRESH, CascadeType.PERSIST,
+            CascadeType.MERGE}, fetch=FetchType.EAGER)
+    @JoinColumn(name="idLivro")
+    private Livro livro;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Temporal(value=TemporalType.DATE)
     private Date dtEmprestimo;
@@ -18,13 +29,30 @@ public class Aluguel{
     @Temporal(value=TemporalType.DATE)
     private Date dtDevolucao;
 
+    public Aluguel() { }
 
-    public Date getDtDevolucao() {
-        return dtDevolucao;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setDtDevolucao(Date dtDevolucao) {
-        this.dtDevolucao = dtDevolucao;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Livro getLivro() {
+        return livro;
+    }
+
+    public void setLivro(Livro livro) {
+        this.livro = livro;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Date getDtEmprestimo() {
@@ -35,16 +63,11 @@ public class Aluguel{
         this.dtEmprestimo = dtEmprestimo;
     }
 
-    public AluguelID getAluguelID() {
-        return aluguelID;
+    public Date getDtDevolucao() {
+        return dtDevolucao;
     }
 
-    public void setAluguelID(AluguelID aluguelID) {
-        this.aluguelID = aluguelID;
+    public void setDtDevolucao(Date dtDevolucao) {
+        this.dtDevolucao = dtDevolucao;
     }
-
-    public Aluguel() { }
-
-
-
 }
