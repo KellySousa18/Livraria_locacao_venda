@@ -11,4 +11,8 @@ CREATE table cliente (
 
     PRIMARY KEY(id)
 
+
 );
+INSERT into cliente( id, nome, cpf, data, email, tipoCliente, endereco_id, telefone)
+
+values (1,'Ana','001001001-01', '2000-04-09','eugosto@sistema.com','pessoa fisica', 1,'1111-1111');

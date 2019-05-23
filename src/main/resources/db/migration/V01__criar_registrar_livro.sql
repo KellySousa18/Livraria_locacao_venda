@@ -17,6 +17,6 @@ CREATE table livro (
 
 );
 
-INSERT into livro (nome, nome_editora, autor, ano_publicacao, isbn, assunto, quantidade_disponivel,compra, nacional, preco_aluguel,preco_venda, preco_renovacao_aluguel)
+INSERT into livro (Id, nome, nome_editora, autor, ano_publicacao, isbn, assunto, quantidade_disponivel,compra, nacional, preco_aluguel,preco_venda, preco_renovacao_aluguel)
 
-values ('A1','editora livre','Aderbal',2011,'A1234567890as','banco de dados',10, 1, 1, 10, 25, 5);
+values (1,'A1','editora livre','Aderbal',2011,'A1234567890as','banco de dados',10, 1, 1, 10, 25, 5);
