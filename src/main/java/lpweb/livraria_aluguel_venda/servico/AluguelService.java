@@ -1,13 +1,11 @@
 package lpweb.livraria_aluguel_venda.servico;
 
 import lpweb.livraria_aluguel_venda.model.Aluguel;
-import lpweb.livraria_aluguel_venda.model.Livro;
 import lpweb.livraria_aluguel_venda.repositorio.AluguelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Set;
 
 public class AluguelService {
     private final AluguelRepository aluguelRepository;
@@ -40,9 +38,5 @@ public class AluguelService {
         return genericoService.buscaPor(id );
     }
 
-    @Transactional(readOnly = true )
-    public Set <Aluguel> Aluguel(Integer id) {
-        Aluguel aluguel = buscaPor(id);
-        return aluguel.getAluguel();
-    }
+
 }

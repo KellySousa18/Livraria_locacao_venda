@@ -1,10 +1,8 @@
 package lpweb.livraria_aluguel_venda.model;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import java.util.Date;
-import java.util.*;
+import java.util.Objects;
 
 
 @Entity
@@ -31,7 +29,6 @@ public class Aluguel{
     @Temporal(value=TemporalType.DATE)
     private Date dtDevolucao;
 
-    public Aluguel() { }
 
     public Cliente getCliente() {
         return cliente;
@@ -86,4 +83,7 @@ public class Aluguel{
     public int hashCode() {
         return Objects.hash(getId());
     }
+
+    
+
 }

@@ -1,8 +1,8 @@
 package lpweb.livraria_aluguel_venda.controle.dto;
 
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lpweb.livraria_aluguel_venda.model.Livro;
 
     public class LivroControllerDTO {
         private Integer id;
@@ -18,6 +18,20 @@ import javax.validation.constraints.Size;
         private Double preco_venda;
         private Double preco_aluguel;
         private Double preco_renovacao_aluguel;
+
+        private DTO<Livro, LivroControllerDTO> dto = new DTO<>(this);
+
+
+
+        public LivroControllerDTO(Livro p) {
+        }
+
+
+        @JsonIgnore
+        public Livro getLivro() {
+            Livro p = dto.getEntity(new Livro() );
+            return p;
+        }
 
         public Integer getId() {
             return id;
@@ -120,6 +134,12 @@ import javax.validation.constraints.Size;
 
         public void setPreco_renovacao_aluguel(Double preco_renovacao_aluguel) {
             this.preco_renovacao_aluguel = preco_renovacao_aluguel;
+        }
+
+        public Livro atualizaIgnorandoNulo(Livro livro) {
+            livro = dto.mergeIgnorandoNulo(livro);
+
+            return livro;
         }
     }
 

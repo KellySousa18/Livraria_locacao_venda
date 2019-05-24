@@ -3,17 +3,21 @@ package lpweb.livraria_aluguel_venda.repositorio.livro;
 import lpweb.livraria_aluguel_venda.model.Livro;
 import lpweb.livraria_aluguel_venda.repositorio.filter.LivroFiltro;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.util.StringUtils;
+import org.springframework.data.domain.Pageable;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.*;
-import java.util.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class ProdutoRepositoryImpl implements LivroRepositoryQuery {
+public class LivroRepositoryImpl implements LivroRepositoryQuery {
 
     @PersistenceContext
     private EntityManager manager;
@@ -42,37 +46,27 @@ public class ProdutoRepositoryImpl implements LivroRepositoryQuery {
     private Predicate[] criaRestricoes(LivroFiltro filtro, CriteriaBuilder cBuilder, Root<Livro> livroRoot) {
 
         List<Predicate> predicates = new ArrayList<>();
-
-        if (!StringUtils.isEmpty(filtro.getNome())) {
+        /*
+        if ( !StringUtils.isEmpty( filtro.getNome()) ) {
             // where nome like %Computador%
-            predicates.add(cBuilder.like(cBuilder.lower(livroRoot.get("nome")), "%" + filtro.getNome().toLowerCase() + "%"));
+            predicates.add(cBuilder.like(cBuilder.lower(produtoRoot.get("nome")), "%" + filtro.getNome().toLowerCase() + "%" ) );
 
         }
 
-        if (Objects.nonNull(filtro.getAno_publicacaoDe())) {
-            predicates.add(cBuilder.ge(livroRoot.get("Ano_publicacao"), filtro.getAno_publicacaoDe()));
+        if ( Objects.nonNull( filtro.getAtivo()) ) {
+            predicates.add( cBuilder.equal( produtoRoot.get("ativo"), filtro.getAtivo() ));
         }
 
-        if (Objects.nonNull(filtro.getAno_publicacaoAte())) {
-            predicates.add(cBuilder.le(livroRoot.get("Ano_publicacao"), filtro.getAno_publicacaoAte()));
+        if (Objects.nonNull(filtro.getCategoriaId()) ) {
+
+            // antes fazemos o join com categorias
+            Path<Integer> categoriaPath = produtoRoot.join("categorias").<Integer>get("id");
+
+            // semelhante a clausula "on" do critério de junção
+            predicates.add ( cBuilder.equal(categoriaPath, filtro.getCategoriaId() ) );
         }
-
-        if (Objects.nonNull(filtro.getPrecoAluguelDe())) {
-            predicates.add(cBuilder.ge(livroRoot.get("preco_aluguel"), filtro.getPrecoAluguelDe()));
-        }
-
-        if (Objects.nonNull(filtro.getPrecoAluguelAte())) {
-            predicates.add(cBuilder.le(livroRoot.get("preco_aluguel"), filtro.getPrecoAluguelAte()));
-        }
-
-        if (Objects.nonNull(filtro.getLivroId())) ;
-
-        Path<Integer> livroPath = livroRoot.join("livro").<Integer>get("id");
-
-        // semelhante a clausula "on" do critério de junção
-        predicates.add(cBuilder.equal(livroPath, filtro.getLivroId()));
-
-        return predicates.toArray(new Predicate[predicates.size()]);
+        */
+        return predicates.toArray(new Predicate[ predicates.size() ] );
     }
 
     private void adicionaRestricoesDePaginacao(TypedQuery<Livro> query, Pageable pageable) {

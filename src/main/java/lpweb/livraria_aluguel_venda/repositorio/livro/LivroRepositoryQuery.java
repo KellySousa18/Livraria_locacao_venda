@@ -6,6 +6,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 
-interface LivroRepositoryQuery  {
+public interface LivroRepositoryQuery  {
     Page<Livro> filtrar(LivroFiltro filtro, Pageable pageable);
 }

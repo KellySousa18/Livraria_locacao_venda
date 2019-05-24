@@ -21,7 +21,7 @@ public class AluguelController {
     @Autowired
     private ApplicationEventPublisher publisher;
 
-    private final AluguelService aluguelService;
+    private AluguelService aluguelService;
 
     @Autowired
     public AluguelController(AluguelService aluguelService) {
